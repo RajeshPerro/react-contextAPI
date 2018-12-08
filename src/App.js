@@ -1,17 +1,34 @@
-import React, { Component } from 'react';
-import './App.css';
-import Team from './component/Team'
-import MyProvider from './provider/MyProvider'
+import React, { Component } from "react";
+
+import Team from "component/Team";
+import TeamContext from "context/TeamContext";
+
+import "./App.css";
 
 class App extends Component {
+  state = {
+    players: [
+      { id: 1, name: "Rajesh", age: 28, position: "Forwarder" },
+      { id: 2, name: "Pasha", age: 29, position: "Back" },
+      { id: 3, name: "Linkon", age: 28, position: "Forwarder" }
+    ]
+  };
+  addPlayer = (name = "Test") =>
+    this.setState({
+      players: [
+        ...this.state.players,
+        { name, id: this.state.players.length + 1 }
+      ]
+    });
   render() {
     return (
       <div className="App">
         <h2>Context API Example</h2>
-        <MyProvider>
+        <TeamContext.Provider
+          value={{ players: this.state.players, addPlayer: this.addPlayer }}
+        >
           <Team />
-        </MyProvider>
-          
+        </TeamContext.Provider>
       </div>
     );
   }
