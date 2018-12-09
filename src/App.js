@@ -13,11 +13,12 @@ class App extends Component {
       { id: 3, name: "Linkon", age: 28, position: "Forwarder" }
     ]
   };
-  addPlayer = (name = "Test") =>
+  addPlayer = (name = "Test",age=2, position="iccha") =>
+    
     this.setState({
       players: [
         ...this.state.players,
-        { name, id: this.state.players.length + 1 }
+        { name, id: this.state.players.length + 1, age, position }
       ]
     });
   render() {
